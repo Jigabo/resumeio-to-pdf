@@ -1,11 +1,7 @@
 FROM python:3.9.16-slim-buster
 
 # Update, install tesseract, clean up
-RUN sed -i 's/deb.debian.org/archive.debian.org/g' /etc/apt/sources.list \
-    && sed -i 's|security.debian.org/debian-security|archive.debian.org/debian-security|g' /etc/apt/sources.list \
-    && echo "deb http://archive.debian.org/debian buster main" > /etc/apt/sources.list.d/buster.list \
-    && echo "deb http://archive.debian.org/debian-security buster/updates main" >> /etc/apt/sources.list.d/buster.list \
-    apt-get update  \
+RUN apt-get update  \
     && apt-get install -y --no-install-recommends \
     tesseract-ocr \
     && apt clean \
